@@ -1,0 +1,18 @@
+const express = require('express');
+const { getNote, createNote, updateNote, deleteNote } = require('../controllers/noteController');
+const noteRouter = express.Router();
+const auth = require('../middlewares/auth')
+
+// getNote
+noteRouter.get("/", auth, getNote);
+
+// create Note
+noteRouter.post("/", auth, createNote);
+
+// update Note
+noteRouter.put("/:id", auth, updateNote);
+
+// delete Note (soft-delete)
+noteRouter.delete("/:id", auth, deleteNote);
+
+module.exports = noteRouter;
